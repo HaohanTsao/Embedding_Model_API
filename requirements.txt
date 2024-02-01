@@ -25,3 +25,8 @@ Werkzeug==3.0.1
 cloudevents==1.10.1 
 functions-framework==3.5.0
 watchdog==3.0.0
+huggingface-hub==0.20.3
+safetensors==0.4.2
+sentence-transformers==2.3.1
+tokenizers==0.15.1
+transformers==4.37.2
