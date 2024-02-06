@@ -49,3 +49,15 @@ def get_table(table_name: str, conditions: dict, columns: list = []):
         logging.error(f"Error retrieving table {table_name}: {str(e)}")
 
         return {}
+
+
+def insert_table(table_name: str, insert_info: dict):
+    try:
+        query = supabase.table(table_name).insert(insert_info)
+
+        data = query.execute()
+
+        return data
+
+    except Exception as e:
+        logging.error(f"Error inserting into table {table_name}: {str(e)}")
