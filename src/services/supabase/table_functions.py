@@ -26,7 +26,7 @@ def update_table(table_name: str, update_info: dict, conditions: dict):
         logging.error(f"Error updating table {table_name}: {str(e)}")
 
 
-def get_table(table_name: str, conditions: dict, columns: list = []):
+def get_table(table_name: str, conditions: dict = {}, columns: list = []):
     try:
         if columns:
             columns_str = ", ".join(columns)
@@ -37,10 +37,10 @@ def get_table(table_name: str, conditions: dict, columns: list = []):
         for column, value in conditions.items():
             query = query.eq(column, value)
 
-        data, count = query.execute()
+        data = query.execute()
 
         logging.info(
-            f"Successfully retrieved {count} rows from table {table_name} with condition {conditions}"
+            f"Successfully retrieved table {table_name} with condition {conditions}"
         )
 
         return data
