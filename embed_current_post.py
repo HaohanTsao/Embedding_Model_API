@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 model_path = os.getenv("EMBEDDING_MODEL_PATH")
+table_name = os.getenv("EMBEDDING_TABLE_NAME")
 
 m = SentenceTransformer(model_path)
 
@@ -25,13 +26,13 @@ for i, post in enumerate(post_data.data):
     embedding_data.append(temp)
 
 # %%
-response = insert_table(table_name="post_embeddings", insert_info=embedding_data[0])
+response = insert_table(table_name=table_name, insert_info=embedding_data[0])
 
 # %%
 for i in range(1, len(embedding_data)):
     try:
         response = insert_table(
-            table_name="post_embeddings", insert_info=embedding_data[i]
+            table_name=table_name, insert_info=embedding_data[i]
         )
         print("success")
     except:
